@@ -141,7 +141,7 @@ function siguiente()
     currentPage++;
     if(currentPage == preguntas.length)
     {
-        currentPage = 0;
+        currentPage = 1;
     }
     loadEvaluacion(preguntas[currentPage]);
 }
