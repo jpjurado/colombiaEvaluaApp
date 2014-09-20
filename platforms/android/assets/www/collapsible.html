@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>nativeDroid - Theme for jQuery Mobile</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		
+		<!-- FontAwesome - http://fortawesome.github.io/Font-Awesome/ -->
+        <link rel="stylesheet" href="css/font-awesome.min.css" />
+
+		<!-- jQueryMobileCSS - original without styling -->
+        <link rel="stylesheet" href="css/jquerymobile.css" />
+
+		<!-- nativeDroid core CSS -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.css" />
+
+		<!-- nativeDroid: Light/Dark -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.dark.css"  id='jQMnDTheme' />
+
+		<!-- nativeDroid: Color Schemes -->
+        <link rel="stylesheet" href="css/jquerymobile.nativedroid.color.green.css" id='jQMnDColor' />
+
+		<!-- jQuery / jQueryMobile Scripts -->
+		<script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/jquery.mobile-1.3.1.min.js"></script>
+        <script src="js/jquery.mobile-1.3.1.min.js"></script>
+        <script src="js/cordova-2.7.0.js"></script>
+        <script src="js/collapsible.js"></script>
+
+    </head>
+    <body>
+        
+    <div data-role="page" data-theme='b'>
+
+
+        <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href="index.html" data-ajax="false"><i class='icon-ellipsis-vertical'></i></a>
+            <h1>Mi Album</h1>
+        </div>
+
+        <div id="groups" data-role="content">   
+
+        <div class='inset'>
+            <h2 id="txtCompletado">Mi album:</h2>
+        </div>
+
+        <div class='inset'>
+            <h3 id="txtFaltantes">Me faltan:</h3>
+
+        <div data-role="content">   
+
+            <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+                <li id="btnMisLaminas">
+                    <a href="#" data-ajax="false"><i class='icon-chevron-right'></i> Mis Monas</a>
+                </li>
+                <li id="btnLaminasFaltantes">
+                    <a href="#" data-ajax="false"><i class='icon-chevron-right'></i> Monas que me faltan</a>
+                </li>
+            </ul>
+        </div>
+
+	    <div data-role="collapsible" data-content-theme="b">
+            <h4>Grupo A</h4>
+            <ul data-role="listview">
+                <li class="team" name="0"><a href="#">Brasil</a></li>
+                <li class="team" name="1"><a href="#">Croacia</a></li>
+                <li class="team" name="2"><a href="#">Mejico</a></li>
+                <li class="team" name="3"><a href="#">Camerun</a></li>
+            </ul>
+        </div>
+
+        <div data-role="collapsible" data-content-theme="b">
+            <h4>Grupo B</h4>
+            <ul data-role="listview">
+                <li class="team" name="4"><a href="#">Espana</a></li>
+                <li class="team" name="5"><a href="#">Holanda</a></li>
+                <li class="team" name="6"><a href="#">Chile</a></li>
+                <li class="team" name="7"><a href="#">Australia</a></li>
+            </ul>
+        </div>
+
+        <div data-role="collapsible" data-content-theme="b">
+            <h4>Grupo C</h4>
+            <ul data-role="listview">
+                <li class="team" name="8"><a href="#">Colombia</a></li>
+                <li class="team" name="9"><a href="#">Grecia</a></li>
+                <li class="team" name="10"><a href="#">Costa de Marfil</a></li>
+                <li class="team" name="11"><a href="#">Japon</a></li>
+            </ul>
+        </div>
+
+        <div data-role="collapsible" data-content-theme="b">
+            <h4>Grupo D</h4>
+            <ul data-role="listview">
+                <li class="team" name="12"><a href="#">Uruguay</a></li>
+                <li class="team" name="13"><a href="#">Costa Rica</a></li>
+                <li class="team" name="14"><a href="#">Inglaterra</a></li>
+                <li class="team" name="15"><a href="#">Italia</a></li>
+            </ul>
+        </div>
+
+        <div data-role="collapsible" data-content-theme="b">
+            <h4>Grupo E</h4>
+            <ul data-role="listview">
+                <li class="team" name="16"><a href="#">Suiza</a></li>
+                <li class="team" name="17"><a href="#">Ecuador</a></li>
+                <li class="team" name="18"><a href="#">Francia</a></li>
+                <li class="team" name="19"><a href="#">Honduraz</a></li>
+            </ul>
+        </div>
+
+        <div data-role="collapsible" data-content-theme="b">
+            <h4>Grupo F</h4>
+            <ul data-role="listview">
+                <li class="team" name="20"><a href="#">Argentina</a></li>
+                <li class="team" name="21"><a href="#">Boznia</a></li>
+                <li class="team" name="22"><a href="#">Iran</a></li>
+                <li class="team" name="23"><a href="#">Nigeria</a></li>
+            </ul>
+        </div>
+
+        <div data-role="collapsible" data-content-theme="b">
+            <h4>Grupo G</h4>
+            <ul data-role="listview">
+                <li class="team" name="24"><a href="#">Alemania</a></li>
+                <li class="team" name="25"><a href="#">Portugal</a></li>
+                <li class="team" name="26"><a href="#">Ghana</a></li>
+                <li class="team" name="27"><a href="#">EEUU</a></li>
+            </ul>
+        </div>
+
+        <div data-role="collapsible" data-content-theme="b">
+            <h4>Grupo H</h4>
+            <ul data-role="listview">
+                <li class="team" name="28"><a href="#">Belgica</a></li>
+                <li class="team" name="29"><a href="#">Argelia</a></li>
+                <li class="team" name="30"><a href="#">Rusia</a></li>
+                <li class="team" name="31"><a href="#">Korea</a></li>
+            </ul>
+        </div>        
+	        
+        </div>
+        
+        <div data-role="popup" id="popupBasic">
+        </div>
+
+    </div>
+    
+    </body>
+</html>

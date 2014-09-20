@@ -1,0 +1,14 @@
+#table-column-toggle-body .cell{
+	text-align: center;
+}
+
+#table-column-toggle-body .cellVelongs{
+	color: green;
+	text-align: center;
+}
+
+.cellVelongs{
+	color: green;
+	text-align: left;
+}
+
