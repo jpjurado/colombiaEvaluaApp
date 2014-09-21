@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>nativeDroid - Theme for jQuery Mobile</title>
+        <title>Appcesible</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta charset='utf-8'>
         
@@ -27,6 +27,18 @@
 
     </head>
     <body>
+
+    <div data-role="page" id="inicio" data-theme='b'>
+        <h2 id="txtCargando">Inicia el Examen<h2>
+        <img src="http://www.eonhq.com/m/data/images/bar-chart-movies.gif" alt="Esta grafica reprecenta el crecimiento exponencial de las variables aleatoreas entropicas en un ambiente a presion controlado bajo parametros hidraulicos de sellado tipo pack">
+        <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
+            <div data-role="listview">
+                <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+                    <li><button id="btnEmpezar">Empezar</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
         
     <div data-role="page" id="formularioPregunta" data-theme='b'>
         <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
@@ -48,10 +60,45 @@
                 </ul>
             </form>
         </div>
-        <h3 id="debug">Hola</h3>
+        <h2 id="prueba">Hola</h2>
         <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
-            <button id="buttonAnterior">Anterior</button>
-            <button id="buttonSiguiente">Siguiente</button>
+            <div data-role="listview">
+                <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+                    <li><button id="buttonAnterior">Pregunta Anterior</button></li>
+                    <li><button id="buttonSiguiente">Pregunta Siguiente</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="formularioPreguntaPar" data-theme='b'>
+        <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href="index.html" data-ajax="false"><i class='icon-ellipsis-vertical'></i></a>
+            <h1 id="numPregunta_Par"></h1>
+        </div>
+
+        <div class='inset'>
+            <h2 id="pregunta_Par"></h2>
+            <img src="http://www.eonhq.com/m/data/images/bar-chart-movies.gif" alt="Smiley face">
+        </div>
+        
+        <div data-role="content" id="contentNum1">   
+            <form id="formOpciones">
+                <ul data-role="listview" data-inset="true">
+                    <li data-role="fieldcontain">
+                        <fieldset data-role="controlgroup" id="camposMultiple_Par">
+                        </fieldset>
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
+            <div data-role="listview">
+                <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+                    <li><button id="buttonAnterior_Par">Pregunta Anterior</button></li>
+                    <li><button id="buttonSiguiente_Par">Pregunta Siguiente</button></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -83,6 +130,7 @@
         <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
             <a href="#pregunta3"><h2>Anterior</h2></a>
         </div>
+
     </div>
 
     <div data-role="page" id="pregunta3" data-theme='b'>

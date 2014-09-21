@@ -18,20 +18,30 @@
  */
  var currentPage = 0;
 
+ var real = 0;
+
 var pregunta1 = {number : 1 ,
-    type : "multiple",
-    question : "En que año se descubrio america?" , 
-    options : ["1492","1566","1512","1568"]};
+    tipo : "multiple",
+    texto : "En que año se descubrio america?" , 
+    opciones : ["1492","1566","1512","1568"]};
 
 var pregunta2 = {number : 2 ,
-    type : "sino",
-    question : "Vamos a ganar el reto?" , 
-    options : ["Verdader","Falso"]};
+    tipo : "falsoVerdadero",
+    texto : "Vamos a ganar el reto?" , 
+    opciones : ["Verdader","Falso"]};
 
 var pregunta3 = {number : 3 ,
-    type : "abierta",
-    question : "Escriba el himno Nacional?" , 
-    options : []};
+    tipo : "abierta",
+    texto : "Escriba el himno Nacional?" , 
+    opciones : []};
+
+var pregunta3 = {number : 3 ,
+    tipo : "abierta",
+    texto : "Escriba el himno Nacional?" , 
+    opciones : []};
+
+var resueltas = [];
+var historial = [];
 
 var preguntas = [pregunta1,
                 pregunta2, 
@@ -71,20 +81,54 @@ var app = {
 
 $(document).ready(function(){
     console.log("Iniciado");
-    console.log(preguntas);
-    console.log(preguntas.length);
+    $.mobile.defaultPageTransition = "slide";
     //$("#numPregunta").text("Cambio");
     $("#buttonAnterior")
         .bind("click", anterior);
     $("#buttonSiguiente")
         .bind("click", siguiente);
-    $(document).on("swiperight", function(){
+    $("#buttonAnterior_Par")
+        .bind("click", anteriorPar);
+    $("#buttonSiguiente_Par")
+        .bind("click", siguientePar);
+    $("#btnEmpezar")
+        .bind("click", loadData);
+    $(".buttonFaltantes")
+        .bind("click", function(){
+            $.mobile.changePage( "#faltantes", { transition: "slide"} );
+        });
+    $(".buttonIrAPregunta")
+        .bind("click", function(){
+            $.mobile.changePage( "#irAPregunta", { transition: "slide"} );
+        });
+    $("#btnIrAPregunta")
+        .bind("click", function(){
+            var nId = +$("#idIrAPregunta").val();
+            currentPage = nId - 1;
+            if(currentPage %2 == 1)
+            {
+                $.mobile.changePage( "#formularioPregunta", { transition: "slide"} );
+            }
+            else
+            {
+                $.mobile.changePage( "#formularioPregunta", { transition: "slide"} );
+            }
+        });
+
+
+    $("#prueba").text("Aca");
+    //MobileAccessibility.isScreenReaderRunning(isScreenReaderRunningCallback);
+    //MobileAccessibility.isTalkBackRunning(isTalkBackRunningCallback);
+    $("#prueba").text("123");
+    $(document).on("click", function(){
         console.log("Swipe");
-        $("#numPregunta").text("Cambio");
+        $("#prueba").text("Cambio");
+        //MobileAccessibility.speak('This string will be announced when a screen reader is active on the device.');
           //navigate to next image
           //$.mobile.changePage();
     });
     console.log(pregunta1);
+    $("#prueba").text("456");
     window.setTimeout(function(){
         //console.log("Hola");
         $("#debug").text(cvox);
@@ -102,58 +146,267 @@ $(document).ready(function(){
 
 $(document).on("pagebeforeshow","#formularioPregunta",function(){
     console.log("Cargo pagina preguntas");
-    loadEvaluacion(pregunta1);
+    $("#camposMultiple").empty();
+    $("#camposMultiple_Par").empty();
+    loadEvaluacion(preguntas[currentPage]);
+    console.log("Historial");
+    console.log(historial);
+    console.log(resueltas);
 });
+
+$(document).on("pagebeforeshow","#formularioPreguntaPar",function(){
+    console.log("Cargo pagina preguntas Par");
+    $("#camposMultiple").empty();
+    $("#camposMultiple_Par").empty();
+    loadEvaluacionPar(preguntas[currentPage]);
+    console.log("Historial");
+    console.log(historial);
+    console.log(resueltas);
+});
+
+$(document).on("pagebeforeshow","#faltantes",function(){
+    console.log("Cargo pagina preguntas Par");
+    var contFaltantes = 0;
+    for (var i = 0; i < resueltas.length; i++) 
+    {
+        if(!resueltas[i])
+            contFaltantes++;
+    };
+    console.log(contFaltantes)
+    $("#textFaltantes").text("Te faltan "+contFaltantes+" preguntas");
+    $("#content-Faltantes").empty();
+    for (var i = 0; i < resueltas.length; i++) 
+    {
+        if(!resueltas[i])
+        {
+            $('<li id="faltante-'+i+'"><button>Pregunta '+(i+1)+'</button></li>').appendTo($("#content-Faltantes"))
+                                                                                .bind("click",changePageFaltante);   
+        }
+    };
+    $("#asd").trigger('create');
+    console.log($("#content-Faltantes"));
+});
+
+function isScreenReaderRunningCallback(boolean) {
+    if (boolean) {
+        console.log("Screen reader: ON");
+        // Do something to improve the behavior of the application while a screen reader is active.
+    } else {
+        console.log("Screen reader: OFF");
+    }
+}
+
+function isTalkBackRunningCallback(boolean) {
+    if (boolean) {
+        console.log("Screen reader: ON");
+        // Do something to improve the behavior of the application while a screen reader is active.
+    } else {
+        console.log("Screen reader: OFF");
+    }
+}
+
 
 function loadEvaluacion(evaluacion)
 {
+    console.log("EVALUACION");
+    console.log(evaluacion);
+    //console.log(evaluacion.opciones[0]);
     $("#numPregunta").text("Pregunta "+evaluacion.number+" de "+preguntas.length);
-    $("#pregunta").text(""+evaluacion.question);
-    if(evaluacion.type == "multiple")
+    $("#pregunta").text(""+evaluacion.texto);
+    if(evaluacion.tipo == "multiple")
     {
         $('<legend>Selecciona una respuesta:</legend>').appendTo($("#camposMultiple"));
-        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-1b" value="Opcion-1"><label for="radio-preguntas-1b" id="opcion_1">'+evaluacion.options[0]+'</label>').appendTo($("#camposMultiple"));
-        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-2b" value="Opcion-2"><label for="radio-preguntas-2b" id="opcion_2">'+evaluacion.options[1]+'</label>').appendTo($("#camposMultiple"));
-        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-3b" value="Opcion-3"><label for="radio-preguntas-3b" id="opcion_3">'+evaluacion.options[2]+'</label>').appendTo($("#camposMultiple"));
-        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-4b" value="Opcion-4"><label for="radio-preguntas-4b" id="opcion_4">'+evaluacion.options[3]+'</label>').appendTo($("#camposMultiple"));
+        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-1b" value="'+evaluacion.number+'-1"><label for="radio-preguntas-1b" id="opcion_1">'+evaluacion.opciones[0]+'</label>').appendTo($("#camposMultiple"));
+        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-2b" value="'+evaluacion.number+'-2"><label for="radio-preguntas-2b" id="opcion_2">'+evaluacion.opciones[1]+'</label>').appendTo($("#camposMultiple"));
+        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-3b" value="'+evaluacion.number+'-3"><label for="radio-preguntas-3b" id="opcion_3">'+evaluacion.opciones[2]+'</label>').appendTo($("#camposMultiple"));
+        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-4b" value="'+evaluacion.number+'-4"><label for="radio-preguntas-4b" id="opcion_4">'+evaluacion.opciones[3]+'</label>').appendTo($("#camposMultiple"));
         console.log($("#camposMultiple"));
         $("#camposMultiple").trigger('create');
     }
-    else if(evaluacion.type == "sino")
+    else if(evaluacion.tipo == "falsoVerdadero")
     {
         $('<legend>Selecciona una respuesta:</legend>').appendTo($("#camposMultiple"));
-        $('<input type="radio" name="radio-sino-'+evaluacion.number+'" id="radio-sino-1b" value="Opcion-1"><label for="radio-sino-1b" id="opcion_1">'+evaluacion.options[0]+'</label>').appendTo($("#camposMultiple"));
-        $('<input type="radio" name="radio-sino-'+evaluacion.number+'" id="radio-sino-2b" value="Opcion-2"><label for="radio-sino-2b" id="opcion_2">'+evaluacion.options[1]+'</label>').appendTo($("#camposMultiple"));
+        $('<input type="radio" name="radio-sino-'+evaluacion.number+'" id="radio-sino-1b" value="'+evaluacion.number+'-1"><label for="radio-sino-1b" id="opcion_1">Verdadero</label>').appendTo($("#camposMultiple"));
+        $('<input type="radio" name="radio-sino-'+evaluacion.number+'" id="radio-sino-2b" value="'+evaluacion.number+'-2"><label for="radio-sino-2b" id="opcion_2">Falso</label>').appendTo($("#camposMultiple"));
         console.log($("#camposMultiple"));
         $("#camposMultiple").trigger('create');
     }
-    else if(evaluacion.type == "abierta")
+    else if(evaluacion.tipo == "abierta")
     {
         $('<legend>Escribe tu respuesta:</legend>').appendTo($("#camposMultiple"));
         $('<textarea cols="40" rows="8" name="textarea2" id="textarea2b" placeholder="Escribe tu respuesta aqui"></textarea>').appendTo($("#camposMultiple"));
     }
 }
 
+function loadEvaluacionPar(evaluacion)
+{
+    console.log("EVALUACION");
+    console.log(evaluacion);
+    //console.log(evaluacion.opciones[0]);
+    $("#numPregunta_Par").text("Pregunta "+evaluacion.number+" de "+preguntas.length);
+    $("#pregunta_Par").text(""+evaluacion.texto);
+    if(evaluacion.tipo == "multiple")
+    {
+        $('<legend>Selecciona una respuesta:</legend>').appendTo($("#camposMultiple_Par"));
+        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-1b" value="'+evaluacion.number+'-1"><label for="radio-preguntas-1b" id="opcion_1">'+evaluacion.opciones[0]+'</label>').appendTo($("#camposMultiple_Par"));
+        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-2b" value="'+evaluacion.number+'-2"><label for="radio-preguntas-2b" id="opcion_2">'+evaluacion.opciones[1]+'</label>').appendTo($("#camposMultiple_Par"));
+        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-3b" value="'+evaluacion.number+'-3"><label for="radio-preguntas-3b" id="opcion_3">'+evaluacion.opciones[2]+'</label>').appendTo($("#camposMultiple_Par"));
+        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-4b" value="'+evaluacion.number+'-4"><label for="radio-preguntas-4b" id="opcion_4">'+evaluacion.opciones[3]+'</label>').appendTo($("#camposMultiple_Par"));
+        console.log($("#camposMultiple_Par"));
+        $("#camposMultiple_Par").trigger('create');
+    }
+    else if(evaluacion.tipo == "falsoVerdadero")
+    {
+        $('<legend>Selecciona una respuesta:</legend>').appendTo($("#camposMultiple_Par"));
+        $('<input type="radio" name="radio-sino-'+evaluacion.number+'" id="radio-sino-1b" value="'+evaluacion.number+'-1"><label for="radio-sino-1b" id="opcion_1">Verdadero</label>').appendTo($("#camposMultiple_Par"));
+        $('<input type="radio" name="radio-sino-'+evaluacion.number+'" id="radio-sino-2b" value="'+evaluacion.number+'-2"><label for="radio-sino-2b" id="opcion_2">Falso</label>').appendTo($("#camposMultiple_Par"));
+        console.log($("#camposMultiple_Par"));
+        $("#camposMultiple_Par").trigger('create');
+    }
+    else if(evaluacion.tipo == "abierta")
+    {
+        $('<legend>Escribe tu respuesta:</legend>').appendTo($("#camposMultiple_Par"));
+        $('<textarea cols="40" rows="8" name="textarea2" id="textarea2b" placeholder="Escribe tu respuesta aqui"></textarea>').appendTo($("#camposMultiple"));
+    }
+}
+
 function siguiente()
 {
+    verificarEditado();
     console.log("Siguiente");
-    $("#camposMultiple").empty();
     currentPage++;
     if(currentPage == preguntas.length)
     {
-        currentPage = 1;
+        currentPage = 0;
     }
-    loadEvaluacion(preguntas[currentPage]);
+    $.mobile.changePage( "#formularioPreguntaPar", { transition: "slide"} );
 }
 
 function anterior()
 {
+    verificarEditado();
     console.log("Anterior");
-    loadEvaluacion(pregunta1);
     currentPage--;
     if(currentPage == -1)
     {
         currentPage = preguntas.length - 1;
     }
-    loadEvaluacion(preguntas[currentPage]);
+    $.mobile.changePage( "#formularioPreguntaPar", { transition: "slide"} );
+}
+
+function siguientePar()
+{
+    verificarEditado();
+    console.log("Siguiente");
+    currentPage++;
+    if(currentPage == preguntas.length)
+    {
+        currentPage = 0;
+    }
+    $.mobile.changePage( "#formularioPregunta", { transition: "slide"} );
+}
+
+function anteriorPar()
+{
+    verificarEditado();
+    console.log("Anterior");
+    currentPage--;
+    if(currentPage == -1)
+    {
+        currentPage = preguntas.length - 1;
+    }
+    $.mobile.changePage( "#formularioPregunta", { transition: "slide"} );
+}
+
+function loadData()
+{
+    if(real == 1)
+    {
+        $("#txtCargando").text("Cargando");
+        $.ajax({
+            type: "GET",
+            url: "http://192.168.91.115:3000/examdefault"
+        })
+        .done(function(json) {
+            $("#txtCargando").text("Termino");
+            console.log(json.questions);
+            console.log("asd");
+            //json = jQuery.parseJSON(json);
+            console.log(json);
+
+            preguntas = json.questions;
+            console.log("preguntas 1234");
+            console.log(preguntas);
+            console.log(preguntas.number);
+            console.log("Acaa");
+            resueltas = new Array(preguntas.length);
+            historial = new Array(preguntas.length);
+            for (var i = 0; i < resueltas.length; ++i) 
+            { 
+                resueltas[i] = false; 
+                historial[i] = "";
+            }
+            $.mobile.changePage( "#formularioPregunta", { transition: "slide"} );
+            //console.log("Termino de modificar finishMove");
+        });
+    }
+    else
+    {
+        resueltas = new Array(preguntas.length);
+        historial = new Array(preguntas.length);
+        for (var i = 0; i < resueltas.length; ++i) 
+        { 
+            resueltas[i] = false; 
+            historial[i] = "";
+        }
+        $.mobile.changePage( "#formularioPregunta", { transition: "slide"} );
+    }
+}
+
+function verificarEditado()
+{
+    if(preguntas[currentPage].tipo == "abierta")
+    {
+        if($('textarea').val() != "")
+        {
+            historial[currentPage] = $('textarea').val();
+            resueltas[currentPage] = true;
+        }
+    }
+    else
+    {
+        if($('input:radio:checked').length > 0)
+        {
+            console.log("Checked");
+            console.log($("input:checked").attr("value"));
+            var pos = +$("input:checked").attr("value").split("-")[0] - 1;
+            console.log(preguntas[pos].tipo);
+            
+            var nValue = +$("input:checked").attr("value").split("-")[1];
+            historial[pos] = nValue;
+            resueltas[pos] = true;
+            console.log($('input:radio:checked').length );
+            console.log("Checked");
+        }
+        else
+        {
+            console.log("No Checked");
+        }
+    }
+}
+
+function changePageFaltante(ev)
+{
+    console.log($(this));
+    console.log($(this).attr("id"));
+    var nId = $(this).attr("id").split("-")[1];
+    currentPage = nId;
+    if(currentPage %2 == 1)
+    {
+        $.mobile.changePage( "#formularioPregunta", { transition: "slide"} );
+    }
+    else
+    {
+        $.mobile.changePage( "#formularioPregunta", { transition: "slide"} );
+    }
 }

@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>nativeDroid - Theme for jQuery Mobile</title>
+        <title>Appcesible</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta charset='utf-8'>
+        <meta charset="utf-8">
         
         <!-- FontAwesome - http://fortawesome.github.io/Font-Awesome/ -->
         <link rel="stylesheet" href="css/font-awesome.min.css" />
@@ -27,6 +27,18 @@
 
     </head>
     <body>
+
+    <div data-role="page" id="inicio" data-theme='b'>
+        <h2 id="txtCargando">Inicia el Examen<h2>
+        <img src="http://www.eonhq.com/m/data/images/bar-chart-movies.gif" alt="Esta grafica reprecenta el crecimiento exponencial de las variables aleatoreas entropicas en un ambiente a presion controlado bajo parametros hidraulicos de sellado tipo pack">
+        <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
+            <div data-role="listview">
+                <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+                    <li><button id="btnEmpezar">Empezar</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
         
     <div data-role="page" id="formularioPregunta" data-theme='b'>
         <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
@@ -48,10 +60,48 @@
                 </ul>
             </form>
         </div>
-        <h3 id="debug">Hola</h3>
+        <h2 id="prueba">Hola</h2>
         <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
-            <button id="buttonAnterior">Anterior</button>
-            <button id="buttonSiguiente">Siguiente</button>
+            <div data-role="listview">
+                <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+                    <li><button id="buttonAnterior">Pregunta Anterior</button></li>
+                    <li><button id="buttonSiguiente">Pregunta Siguiente</button></li>
+                    <li><button class="buttonFaltantes">Pregunta Faltantes</button></li>
+                    <li><button class="buttonIrAPregunta">Ir a Pregunta</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="formularioPreguntaPar" data-theme='b'>
+        <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href="index.html" data-ajax="false"><i class='icon-ellipsis-vertical'></i></a>
+            <h1 id="numPregunta_Par"></h1>
+        </div>
+
+        <div class='inset'>
+            <h2 id="pregunta_Par"></h2>
+        </div>
+        
+        <div data-role="content" id="contentNum1">   
+            <form id="formOpciones">
+                <ul data-role="listview" data-inset="true">
+                    <li data-role="fieldcontain">
+                        <fieldset data-role="controlgroup" id="camposMultiple_Par">
+                        </fieldset>
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
+            <div data-role="listview">
+                <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+                    <li><button id="buttonAnterior_Par">Pregunta Anterior</button></li>
+                    <li><button id="buttonSiguiente_Par">Pregunta Siguiente</button></li>
+                    <li><button class="buttonFaltantes">Pregunta Faltantes</button></li>
+                    <li><button class="buttonIrAPregunta">Ir a Pregunta</button></li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -71,7 +121,7 @@
                     <li data-role="fieldcontain">
                         <fieldset data-role="controlgroup">
                             <legend>Respuesta:</legend>
-                            <input type="radio" name="radio-multiple-1" id="radio-multiple-1b" value="multiple-1" checked="checked">
+                            <input type="radio" name="radio-multiple-1" id="radio-multiple-1b" value="multiple-1">
                             <label for="radio-multiple-1b">Verdadero</label>
                             <input type="radio" name="radio-multiple-1" id="radio-multiple-2b" value="multiple-2">
                             <label for="radio-multiple-2b">Falso</label>
@@ -83,6 +133,7 @@
         <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
             <a href="#pregunta3"><h2>Anterior</h2></a>
         </div>
+
     </div>
 
     <div data-role="page" id="pregunta3" data-theme='b'>
@@ -111,9 +162,50 @@
             <a href="#pregunta1"><h2>Anterior</h2></a>
         </div>
     </div>
+
+    <div data-role="page" id="faltantes" data-theme='b'>
+        <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href="index.html" data-ajax="false"><i class='icon-ellipsis-vertical'></i></a>
+            <h1 id="numFaltantes">Preguntas Faltantes</h1>
+        </div>
+
+        <div class='inset'>
+            <h2 id="textFaltantes"></h2>
+        </div>
+        
+        <div data-role="content" id="asd">
+            <div data-role="listview">
+                <ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b" id="content-Faltantes">
+                    <li data-role="fieldcontain">
+                        <label for="name2b">Digite la pagina:</label>
+                        <input type="text" name="name2" id="name2b" value="" data-clear-btn="true" placeholder="Digite la pagina">
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
+            <a href="#pregunta1"><h2>Anterior</h2></a>
+        </div>
+    </div>
+
+    <div data-role="page" id="irAPregunta" data-theme='b'>
+        <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+            <a href="index.html" data-ajax="false"><i class='icon-ellipsis-vertical'></i></a>
+            <h1 id="numFaltantes">Ir a Pregunta</h1>
+        </div>
+        
+        <li data-role="fieldcontain">
+            <label for="name2b">Text Input:</label>
+            <input type="text" name="name2" id="idIrAPregunta" value="" data-clear-btn="true" placeholder="Type your text here...">
+        </li>
+        <li><button id="btnIrAPregunta">Empezar</button></li>
+
+
+        <div data-position="fixed" data-tap-toggle="false" data-role="footer" data-tap-toggle="false" data-theme='b'>
+            <a href="#pregunta1"><h2>Anterior</h2></a>
+        </div>
+    </div>
     
     </body>
-    <script type="text/javascript">
-        console.log($("#radio-choice-1b"));
-    </script>
 </html>
