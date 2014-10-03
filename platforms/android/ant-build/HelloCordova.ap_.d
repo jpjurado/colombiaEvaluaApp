@@ -1,5 +1,6 @@
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/HelloCordova.ap_ \
  : /home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-port-xhdpi/screen.png \
+/home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-port-xhdpi/screen1.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/res/xml/config.xml \
 /home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-land-ldpi/screen.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-mdpi/icon.png \
@@ -8,13 +9,17 @@
 /home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-xhdpi/icon.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-ldpi/icon.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-port-mdpi/screen.png \
+/home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-port-mdpi/screen2.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-port-ldpi/screen.png \
+/home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-port-ldpi/screen1.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-land-mdpi/screen.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-land-xhdpi/screen.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-port-hdpi/screen.png \
+/home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-port-hdpi/screen1.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/res/drawable-land-hdpi/screen.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/res/values/strings.xml \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-port-xhdpi/screen.png \
+/home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-port-xhdpi/screen1.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-land-ldpi/screen.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-mdpi/icon.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-hdpi/icon.png \
@@ -22,10 +27,13 @@
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-xhdpi/icon.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-ldpi/icon.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-port-mdpi/screen.png \
+/home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-port-mdpi/screen2.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-port-ldpi/screen.png \
+/home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-port-ldpi/screen1.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-land-mdpi/screen.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-land-xhdpi/screen.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-port-hdpi/screen.png \
+/home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-port-hdpi/screen1.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/res/drawable-land-hdpi/screen.png \
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/www \
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/_where-is-www.txt \
@@ -55,6 +63,7 @@
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/www/accordions.html \
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/www/config.xml \
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/www/autocomplete.html \
+/home/jurado/Phonegap/AppSchool/platforms/android/assets/www/angularjsTest.html \
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/www/index2.html \
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/www/cordova.js \
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/www/homescreen.html \
@@ -76,6 +85,7 @@
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/www/js/tablesTeam.js \
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/www/js/nativedroid.script.js \
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/www/js/cordova-2.7.0.js \
+/home/jurado/Phonegap/AppSchool/platforms/android/assets/www/js/angular.min.js \
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/www/css/jquerymobile.nativedroid.color.yellow.css \
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/www/css/jquerymobile.nativedroid.color.purple.css \
 /home/jurado/Phonegap/AppSchool/platforms/android/assets/www/css/jquerymobile.nativedroid.dark.css \

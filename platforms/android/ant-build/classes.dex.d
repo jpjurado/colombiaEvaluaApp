@@ -9,6 +9,13 @@
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/classes/io/cordova/hellocordova/R.class \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/classes/io/cordova/hellocordova/R$string.class \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/classes/io/cordova/hellocordova/R$attr.class \
+/home/jurado/Phonegap/AppSchool/platforms/android/ant-build/classes/com/ttde/colombiaevalua/BuildConfig.class \
+/home/jurado/Phonegap/AppSchool/platforms/android/ant-build/classes/com/ttde/colombiaevalua/R$drawable.class \
+/home/jurado/Phonegap/AppSchool/platforms/android/ant-build/classes/com/ttde/colombiaevalua/HelloCordova.class \
+/home/jurado/Phonegap/AppSchool/platforms/android/ant-build/classes/com/ttde/colombiaevalua/R$xml.class \
+/home/jurado/Phonegap/AppSchool/platforms/android/ant-build/classes/com/ttde/colombiaevalua/R.class \
+/home/jurado/Phonegap/AppSchool/platforms/android/ant-build/classes/com/ttde/colombiaevalua/R$string.class \
+/home/jurado/Phonegap/AppSchool/platforms/android/ant-build/classes/com/ttde/colombiaevalua/R$attr.class \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/classes/com/phonegap/plugin/mobileaccessibility/MobileAccessibility$8.class \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/classes/com/phonegap/plugin/mobileaccessibility/DonutMobileAccessibilityHelper.class \
 /home/jurado/Phonegap/AppSchool/platforms/android/ant-build/classes/com/phonegap/plugin/mobileaccessibility/MobileAccessibility$5.class \

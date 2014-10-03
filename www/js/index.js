@@ -17,13 +17,16 @@
  * under the License.
  */
  var currentPage = 0;
+ //var urlServer = "http://reallabs.com.co:3000/examdefault";
+//var urlServer = "http://localhost:3000/examdefault";
+var urlServer = "http://colevalua.nodejitsu.com/examdefault";
 
- var real = 0;
+ var real = 1;
 
 var pregunta1 = {number : 1 ,
     tipo : "multiple",
     texto : "En que año se descubrio america?" , 
-    opciones : ["1492","1566","1512","1568"]};
+    opciones : ["1492","1566","1512","1568" , "1333"]};
 
 var pregunta2 = {number : 2 ,
     tipo : "falsoVerdadero",
@@ -116,19 +119,12 @@ $(document).ready(function(){
         });
 
 
-    $("#prueba").text("Aca");
+    //$("#prueba").text("Aca");
     //MobileAccessibility.isScreenReaderRunning(isScreenReaderRunningCallback);
     //MobileAccessibility.isTalkBackRunning(isTalkBackRunningCallback);
-    $("#prueba").text("123");
-    $(document).on("click", function(){
-        console.log("Swipe");
-        $("#prueba").text("Cambio");
-        //MobileAccessibility.speak('This string will be announced when a screen reader is active on the device.');
-          //navigate to next image
-          //$.mobile.changePage();
-    });
+    //$("#prueba").text("123");
     console.log(pregunta1);
-    $("#prueba").text("456");
+    //$("#prueba").text("456");
     window.setTimeout(function(){
         //console.log("Hola");
         $("#debug").text(cvox);
@@ -148,6 +144,8 @@ $(document).on("pagebeforeshow","#formularioPregunta",function(){
     console.log("Cargo pagina preguntas");
     $("#camposMultiple").empty();
     $("#camposMultiple_Par").empty();
+    $("#grafica").empty();
+    $("#graficaPar").empty();
     loadEvaluacion(preguntas[currentPage]);
     console.log("Historial");
     console.log(historial);
@@ -158,6 +156,8 @@ $(document).on("pagebeforeshow","#formularioPreguntaPar",function(){
     console.log("Cargo pagina preguntas Par");
     $("#camposMultiple").empty();
     $("#camposMultiple_Par").empty();
+    $("#grafica").empty();
+    $("#graficaPar").empty();
     loadEvaluacionPar(preguntas[currentPage]);
     console.log("Historial");
     console.log(historial);
@@ -215,16 +215,25 @@ function loadEvaluacion(evaluacion)
     $("#pregunta").text(""+evaluacion.texto);
     if(evaluacion.tipo == "multiple")
     {
-        $('<legend>Selecciona una respuesta:</legend>').appendTo($("#camposMultiple"));
+        if(evaluacion.urlImagen != undefined)
+        {
+            $('<img src="'+evaluacion.urlImagen+'" alt="'+evaluacion.descripcionImagen+'">').appendTo($("#grafica"));
+        }
+        $('<legend>Seleccion multiple con cinco opciones de respuesta:</legend>').appendTo($("#camposMultiple"));
         $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-1b" value="'+evaluacion.number+'-1"><label for="radio-preguntas-1b" id="opcion_1">'+evaluacion.opciones[0]+'</label>').appendTo($("#camposMultiple"));
         $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-2b" value="'+evaluacion.number+'-2"><label for="radio-preguntas-2b" id="opcion_2">'+evaluacion.opciones[1]+'</label>').appendTo($("#camposMultiple"));
         $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-3b" value="'+evaluacion.number+'-3"><label for="radio-preguntas-3b" id="opcion_3">'+evaluacion.opciones[2]+'</label>').appendTo($("#camposMultiple"));
         $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-4b" value="'+evaluacion.number+'-4"><label for="radio-preguntas-4b" id="opcion_4">'+evaluacion.opciones[3]+'</label>').appendTo($("#camposMultiple"));
+        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-5b" value="'+evaluacion.number+'-5"><label for="radio-preguntas-5b" id="opcion_5">'+evaluacion.opciones[4]+'</label>').appendTo($("#camposMultiple"));
         console.log($("#camposMultiple"));
         $("#camposMultiple").trigger('create');
     }
     else if(evaluacion.tipo == "falsoVerdadero")
     {
+        if(evaluacion.urlImagen != undefined)
+        {
+            $('<img src="'+evaluacion.urlImagen+'" alt="'+evaluacion.descripcionImagen+'">').appendTo($("#grafica"));
+        }
         $('<legend>Selecciona una respuesta:</legend>').appendTo($("#camposMultiple"));
         $('<input type="radio" name="radio-sino-'+evaluacion.number+'" id="radio-sino-1b" value="'+evaluacion.number+'-1"><label for="radio-sino-1b" id="opcion_1">Verdadero</label>').appendTo($("#camposMultiple"));
         $('<input type="radio" name="radio-sino-'+evaluacion.number+'" id="radio-sino-2b" value="'+evaluacion.number+'-2"><label for="radio-sino-2b" id="opcion_2">Falso</label>').appendTo($("#camposMultiple"));
@@ -233,6 +242,10 @@ function loadEvaluacion(evaluacion)
     }
     else if(evaluacion.tipo == "abierta")
     {
+        if(evaluacion.urlImagen != undefined)
+        {
+            $('<img src="'+evaluacion.urlImagen+'" alt="'+evaluacion.descripcionImagen+'">').appendTo($("#grafica"));
+        }
         $('<legend>Escribe tu respuesta:</legend>').appendTo($("#camposMultiple"));
         $('<textarea cols="40" rows="8" name="textarea2" id="textarea2b" placeholder="Escribe tu respuesta aqui"></textarea>').appendTo($("#camposMultiple"));
     }
@@ -247,17 +260,26 @@ function loadEvaluacionPar(evaluacion)
     $("#pregunta_Par").text(""+evaluacion.texto);
     if(evaluacion.tipo == "multiple")
     {
-        $('<legend>Selecciona una respuesta:</legend>').appendTo($("#camposMultiple_Par"));
+        if(evaluacion.urlImagen != undefined)
+        {
+            $('<img src="'+evaluacion.urlImagen+'" alt="'+evaluacion.descripcionImagen+'">').appendTo($("#graficaPar"));
+        }
+        $('<legend>Seleccion multiple con cinco opciones de respuesta:</legend>').appendTo($("#camposMultiple_Par"));
         $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-1b" value="'+evaluacion.number+'-1"><label for="radio-preguntas-1b" id="opcion_1">'+evaluacion.opciones[0]+'</label>').appendTo($("#camposMultiple_Par"));
         $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-2b" value="'+evaluacion.number+'-2"><label for="radio-preguntas-2b" id="opcion_2">'+evaluacion.opciones[1]+'</label>').appendTo($("#camposMultiple_Par"));
         $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-3b" value="'+evaluacion.number+'-3"><label for="radio-preguntas-3b" id="opcion_3">'+evaluacion.opciones[2]+'</label>').appendTo($("#camposMultiple_Par"));
         $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-4b" value="'+evaluacion.number+'-4"><label for="radio-preguntas-4b" id="opcion_4">'+evaluacion.opciones[3]+'</label>').appendTo($("#camposMultiple_Par"));
+        $('<input type="radio" name="radio-pregunta-'+evaluacion.number+'" id="radio-preguntas-5b" value="'+evaluacion.number+'-5"><label for="radio-preguntas-5b" id="opcion_5">'+evaluacion.opciones[4]+'</label>').appendTo($("#camposMultiple_Par"));
         console.log($("#camposMultiple_Par"));
         $("#camposMultiple_Par").trigger('create');
     }
     else if(evaluacion.tipo == "falsoVerdadero")
     {
-        $('<legend>Selecciona una respuesta:</legend>').appendTo($("#camposMultiple_Par"));
+        if(evaluacion.urlImagen != undefined)
+        {
+            $('<img src="'+evaluacion.urlImagen+'" alt="'+evaluacion.descripcionImagen+'">').appendTo($("#graficaPar"));
+        }
+        $('<legend>Respuesta de falso y verdadero:</legend>').appendTo($("#camposMultiple_Par"));
         $('<input type="radio" name="radio-sino-'+evaluacion.number+'" id="radio-sino-1b" value="'+evaluacion.number+'-1"><label for="radio-sino-1b" id="opcion_1">Verdadero</label>').appendTo($("#camposMultiple_Par"));
         $('<input type="radio" name="radio-sino-'+evaluacion.number+'" id="radio-sino-2b" value="'+evaluacion.number+'-2"><label for="radio-sino-2b" id="opcion_2">Falso</label>').appendTo($("#camposMultiple_Par"));
         console.log($("#camposMultiple_Par"));
@@ -265,7 +287,11 @@ function loadEvaluacionPar(evaluacion)
     }
     else if(evaluacion.tipo == "abierta")
     {
-        $('<legend>Escribe tu respuesta:</legend>').appendTo($("#camposMultiple_Par"));
+        if(evaluacion.urlImagen != undefined)
+        {
+            $('<img src="'+evaluacion.urlImagen+'" alt="'+evaluacion.descripcionImagen+'">').appendTo($("#graficaPar"));
+        }
+        $('<legend>Pegunta abierta:</legend>').appendTo($("#camposMultiple_Par"));
         $('<textarea cols="40" rows="8" name="textarea2" id="textarea2b" placeholder="Escribe tu respuesta aqui"></textarea>').appendTo($("#camposMultiple"));
     }
 }
@@ -325,7 +351,7 @@ function loadData()
         $("#txtCargando").text("Cargando");
         $.ajax({
             type: "GET",
-            url: "http://192.168.91.115:3000/examdefault"
+            url: urlServer,
         })
         .done(function(json) {
             $("#txtCargando").text("Termino");
